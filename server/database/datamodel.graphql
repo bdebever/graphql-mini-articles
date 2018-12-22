@@ -1,0 +1,33 @@
+type Paragraph {
+  id: ID! @unique
+  content: String!
+  order: Int! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  article: Article! @relation(name: "ParagraphesByArticle")
+}
+
+type Article {
+  id: ID! @unique
+  title: String!
+  categories: [Category!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  paragraphes: [Paragraph!]! @relation(name: "ParagraphesByArticle" onDelete: CASCADE)
+}
+
+type Category {
+  id: ID! @unique
+  slug: String! @unique
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type User {
+  id: ID! @unique
+  name: String!
+  email: String! @unique
+  password: String!
+  paragraphes: [Paragraph!]
+}
