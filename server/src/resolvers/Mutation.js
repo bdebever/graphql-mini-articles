@@ -4,7 +4,6 @@ const { APP_SECRET, getUserId } = require('../utils')
 
 function createArticle(parent, { title, categoryIds, paragraphes }, ctx, info) {
   return ctx.prisma.createArticle({
-    data: {
       title,
       categories: {
         connect: [
@@ -25,8 +24,7 @@ function createArticle(parent, { title, categoryIds, paragraphes }, ctx, info) {
           })
         ]
       }
-    }
-  }, info)
+    })
 }
 
 async function signup(parent, args, ctx, info) {

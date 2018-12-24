@@ -1,7 +1,7 @@
 type Paragraph {
   id: ID! @unique
   content: String!
-  order: Int! @unique
+  order: Int!
   createdAt: DateTime!
   updatedAt: DateTime!
   article: Article! @relation(name: "ParagraphesByArticle")

@@ -632,7 +632,6 @@ export interface ParagraphUpdateWithWhereUniqueWithoutArticleInput {
 
 export type ParagraphWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
-  order?: Int;
 }>;
 
 export interface ParagraphUpdateWithoutArticleDataInput {

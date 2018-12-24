@@ -749,7 +749,6 @@ input ParagraphWhereInput {
 
 input ParagraphWhereUniqueInput {
   id: ID
-  order: Int
 }
 
 type Query {
