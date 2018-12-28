@@ -16,8 +16,8 @@ More details:
 
 We have the following directories:
 - `src`: contains the client files of the React application
-- `server`: contains the GraphQL server as well as the Prisma configuration. This is another repository.
-
+- `server`: contains the GraphQL server as well as the Prisma configuration. This is [another repository](https://github.com/bdebever/graphql-mini-articles-server)
+- `public`: static files for the React application to work
 
 ## Available Scripts
 
