@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Tag, Divider, Button, Layout } from 'antd';
+import { Tag, Divider, Button, Row, Col } from 'antd';
 import Paragraphes from './Paragraphes';
 import EditArticle from './EditArticle';
 
@@ -45,14 +45,27 @@ export default class Article extends Component {
         });
     }
 
+    /**
+     * TODO: factor that into the same method show/hide using a parameter
+     */
+    setHidden = () => {
+        const modal = { ...this.state.modal};
+        modal['edit'] = false;
+        this.setState({
+            modal
+        });
+        console.log("cosed");
+    }
+
     removeTag = (e) => {
         // TODO: handle this plus handle adding a new tag
         console.log(e);
     }
 
     render() {
+        console.log("state: " + this.state.modal.edit);
         return (
-        <Query query={ARTICLE_QUERY} variables={{ id: this.props.match.params.articleId }}>
+        <Query query={ARTICLE_QUERY} pollInterval={500} variables={{ id: this.props.match.params.articleId }}>
                 {({ loading, error, data }) => {
                     if (loading) return `Loading`;
                     if (error) return `Error!: ${error}`;
@@ -61,15 +74,19 @@ export default class Article extends Component {
 
                     return (
                         <div>
-                            <Layout>
-                                <h1>Title: { article.title }</h1>
-                                <Button type="primary" onClick={() => this.showModal('add')}>Edit the article</Button>
-                            </Layout>
-                            {
-                                article.categories.map(cat => (
-                                    <Tag key={cat.id} closable onClose={this.removeTag}>{cat.name}</Tag>
-                                ))
-                            }
+                            <h1>Title: { article.title }</h1>
+                            <Row gutter={12}>
+                                <Col className="gutter-row" span={8}>
+                                {
+                                    article.categories.map(cat => (
+                                        <Tag key={cat.id} closable onClose={this.removeTag}>{cat.name}</Tag>
+                                    ))
+                                }
+                                </Col>
+                                <Col className="gutter-row" span={4}>
+                                    <Button type="primary" onClick={() => this.showModal('edit')}>Edit the article</Button>
+                                </Col>
+                            </Row>
                             <Divider orientation="left">Content of the article</Divider>
                             {
                                 article.paragraphes
@@ -78,7 +95,11 @@ export default class Article extends Component {
                                 :
                                 <p>No paragraph for this article</p>
                             }
-                            <EditArticle article={article} visible={this.state.modal.add}></EditArticle>
+                            <EditArticle
+                                article={article}
+                                visible={this.state.modal.edit}
+                                closed={this.setHidden}
+                            ></EditArticle>
                         </div>
                     )
                 }}

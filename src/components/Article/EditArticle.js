@@ -4,7 +4,7 @@ import React, {
 import {
     Modal
 } from 'antd';
-import PropTypes from 'prop-types';
+import WrappedDynamicEditForm from '../Form/EditForm';
 
 export default class EditArticle extends Component {
     constructor(props) {
@@ -30,7 +30,8 @@ export default class EditArticle extends Component {
     }
 
     handleClose = () => {
-        this.setState({visible: false})
+        this.setState({visible: false});
+        this.props.closed();
     }
 
     render() {
@@ -41,7 +42,7 @@ export default class EditArticle extends Component {
                 onCancel={this.handleClose}
                 footer={false}
             >
-
+                <WrappedDynamicEditForm article={this.state.article}></WrappedDynamicEditForm>
             </Modal>
         )
     }
