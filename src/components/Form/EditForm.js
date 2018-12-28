@@ -38,6 +38,10 @@ const formItemLayoutWithOutLabel = {
 };
 
 class EditForm extends Component {
+
+  /**
+   * Remove a paragraph from the front
+   */
   remove = (k) => {
     const { form } = this.props;
 
@@ -55,6 +59,9 @@ class EditForm extends Component {
     });
   }
 
+  /**
+   * Add a new paragraph
+   */
   add = () => {
     const { form } = this.props;
 
@@ -105,7 +112,7 @@ class EditForm extends Component {
                   autosize={{ minRows: 2, maxRows: 6 }}
                   style={{ width: '95%', marginRight: 8 }}
                   onBlur={async (e) => {
-                    const mutation = await updateParagraph({ variables: {
+                    await updateParagraph({ variables: {
                       content: e.target.value,
                       id: e.target.dataset.id,
                       order: parseInt(e.target.dataset.order),
@@ -128,7 +135,7 @@ class EditForm extends Component {
                           this.remove(k);
                           let id = e.currentTarget.dataset.id;
                           if (!id) return;
-                          const mutation = await deleteParagraph({variables: {id}});
+                          await deleteParagraph({variables: {id}});
                           if (error) console.error(error);
                         }}
                       />

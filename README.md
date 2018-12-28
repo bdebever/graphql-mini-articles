@@ -21,6 +21,24 @@ We have the following directories:
 - `server`: contains the GraphQL server as well as the Prisma configuration. This is [another repository](https://github.com/bdebever/graphql-mini-articles-server). The address of the server is defined in the `./src/index.js` file, line 12.
 - `public`: static files for the React application to work
 
+
+## Installation
+
+In order to set up the environment, you need to do the following:
+```
+$ git clone --recurse-submodules git@github.com:bdebever/graphql-mini-articles.git
+```
+The flag `--recurse-submodules` is important in order to clone the server repository as well.
+Then, `cd` into this new repository, and run the following:
+```
+$ npm install
+$ npm start
+$ cd server
+$ npm start
+```
+
+You should have your development server running on port _4000_, and the client running on port _3000_.
+
 ## Available Scripts
 
 In the project directory, you can run:

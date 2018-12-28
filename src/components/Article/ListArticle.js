@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     List,
     Avatar,
-    Icon
+    Icon,
+    Button
 } from 'antd';
 import { Link } from 'react-router-dom';
 import { Query } from 'react-apollo';
@@ -77,6 +78,7 @@ export default class ListArticle extends Component {
                                         description={item.categories.map(cat => cat.name).join(', ')}
                                         />
                                         Content of the first paragrah: {item.paragraphes[0].content}
+                                        <Button style={{ float: 'right' }} type="primary"><Link to={`/${item.id}`}>View the article</Link></Button>
                                     </List.Item>
                                 )}
                             />

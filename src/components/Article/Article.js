@@ -82,7 +82,7 @@ export default class Article extends Component {
                                 }
                                 </Col>
                                 <Col className="gutter-row" span={4}>
-                                    <Button type="primary" onClick={() => this.showModal('edit')}>Edit the article</Button>
+                                    <Button type="primary" onClick={() => this.showModal('edit')} style={{ float: 'right' }}>Edit the article</Button>
                                 </Col>
                             </Row>
                             <Divider orientation="left">Content of the article</Divider>

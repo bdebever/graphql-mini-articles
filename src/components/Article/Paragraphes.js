@@ -7,29 +7,9 @@ import {
     Draggable
 } from 'react-beautiful-dnd';
 import {
-    Query, Mutation
+    Mutation
 } from 'react-apollo';
 import gql from 'graphql-tag';
-
-const ARTICLE_QUERY = gql `
-    query article($id: ID!) {
-        article(id: $id)
-                {
-                    id,
-                    title,
-                    createdAt
-                    categories {
-                        id
-                        name
-                    }
-                    paragraphes {
-                        id
-                        content,
-                        order
-                    }
-                }
-        }
-`;
 
 const UPDATE_ORDER = gql `
     mutation changeParagraphOrder($paragraphes: [String!] !) {
