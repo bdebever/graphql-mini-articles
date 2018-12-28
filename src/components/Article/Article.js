@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Tag, Divider, Button } from 'antd';
+import { Tag, Divider, Button, Layout } from 'antd';
 import Paragraphes from './Paragraphes';
 import EditArticle from './EditArticle';
 

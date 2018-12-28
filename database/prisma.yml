@@ -1,9 +1,0 @@
-datamodel: datamodel.graphql
-secret: mysecret123
-generate:
-  - generator: javascript-client
-    output: ../src/generated/prisma-client
-hooks:
-  post-deploy:
-    - prisma generate
-endpoint: https://eu1.prisma.sh/baptiste-debever-bf48d1/paragraphes-iteem-1/dev
