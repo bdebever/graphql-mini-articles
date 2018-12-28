@@ -1,8 +1,9 @@
 scalar DateTime
 
 type Query {
-  feed(filter: String, skip: Int, orderBy: String): [Article]!
+  feed(filter: String, skip: Int, orderBy: String, ids: [ID!]): [Article]!
   categories(filter: String): [Category]!
+  article(id: ID!, orderBy: String): Article
 }
 
 type Mutation {
@@ -13,7 +14,7 @@ type Mutation {
   addParagraph(content: String!, articleId: Int!): Paragraph
   updateParagraph(id: ID!, content: String!): Paragraph
   deleteParagraph(id: ID!): Paragraph
-  changeParagraphOrder(id: ID!, newOrder: Int!): Paragraph
+  changeParagraphOrder(paragraphes: [String!]!): [Paragraph]!
 }
 
 type AuthPayload {

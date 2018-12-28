@@ -32,3 +32,16 @@
     transform: rotate(360deg);
   }
 }
+
+.ant-tree li .ant-tree-node-content-wrapper {
+  height: auto !important;
+}
+
+.ant-tree li {
+  white-space: initial !important;
+  margin-top: 15px;
+}
+
+.ant-tree li span.ant-tree-switcher {
+  display: none;
+}

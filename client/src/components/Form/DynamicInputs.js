@@ -23,6 +23,8 @@ class DynamicFieldSet extends Component {
     const { form } = this.props;
 
     const keys = form.getFieldValue('keys');
+    const paragraphes = form.getFieldValue('paragraphes');
+
     // We need at least one paragraph
     if (keys.length === 1) {
       return;
@@ -30,6 +32,7 @@ class DynamicFieldSet extends Component {
 
     form.setFieldsValue({
       keys: keys.filter(key => key !== k),
+      paragraphes: paragraphes.splice(k)
     });
   }
 
@@ -120,7 +123,11 @@ class DynamicFieldSet extends Component {
           </Button>
         </Form.Item>
         <Form.Item {...formItemLayoutWithOutLabel} style={{ textAlign: 'right' }}>
-          <CreateArticle form={this.props.form} onSubmitted={this.handleSubmit}></CreateArticle>
+          <CreateArticle
+            form={this.props.form}
+            onSubmitted={this.handleSubmit}
+          >
+          </CreateArticle>
         </Form.Item>
       </Form>
     );

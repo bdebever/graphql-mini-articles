@@ -4,10 +4,9 @@ async function feed(parent, args, context, info) {
     ? { OR: [{ url_contains: filter }, { description_contains: filter }] }
     : {}
 
-  const allArticles = await context.prisma.articles({})
-  const count = allArticles.length
-
-  //const queriedLinkes = await ctx.prisma.links({ first, skip, where })
+  const allArticles = await context.prisma.articles({
+    orderBy: orderBy ? orderBy : 'createdAt_DESC'
+  });
 
   return allArticles;
 }
@@ -17,7 +16,13 @@ async function categories(parent, args, context, info) {
   return allCategories;
 }
 
+async function article(parent, { id, orderBy }, context, info) {
+  const article = await context.prisma.article({ id })
+  return article;
+}
+
 module.exports = {
   feed,
-  categories
+  categories,
+  article
 }

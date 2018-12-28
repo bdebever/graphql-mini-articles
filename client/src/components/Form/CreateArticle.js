@@ -10,10 +10,34 @@ import { Mutation } from 'react-apollo';
 const ARTICLE_MUTATION = gql `
   mutation createArticle($title: String!, $categories: [String!]!, $paragraphes: [String!]! ) {
     createArticle(title: $title, categoryIds: $categories, paragraphes: $paragraphes) {
-      id
+      id,
+      title,
+      categories {
+        name
+      }
+      paragraphes {
+        content,
+        order
+      }
     }
   }
 `
+
+const FEED_QUERY = gql `
+    {
+        feed {
+            id,
+            title,
+            categories {
+                name
+            }
+            paragraphes {
+                content,
+                order
+            }
+        }
+    }
+`;
 
 export default class CreateArticle extends Component {
 
@@ -30,9 +54,24 @@ export default class CreateArticle extends Component {
     this.props.form.resetFields();
   }
 
+  _updateStoreAfterMutation = (store, value) => {
+    const data = store.readQuery({ query: FEED_QUERY });
+    console.log("reading data");
+    console.log(data.feed);
+    data.feed.unshift(value);
+    store.writeQuery({ query: FEED_QUERY, data })
+  }
+
   render() {
     return (
-        <Mutation mutation={ARTICLE_MUTATION} onError={this.handleError} onCompleted={this.handleSuccess}>
+        <Mutation
+          mutation={ARTICLE_MUTATION}
+          onError={this.handleError}
+          onCompleted={this.handleSuccess}
+          update={(store, { data: { createArticle } }) =>
+            this._updateStoreAfterMutation(store, createArticle)
+          }
+        >
           {postMutation => <Button type="primary" htmlType="submit" onClick={(e) => {
             e.preventDefault();
             this.props.form.validateFields((err, values) => {

@@ -24,7 +24,7 @@ function createArticle(parent, { title, categoryIds, paragraphes }, ctx, info) {
           })
         ]
       }
-    })
+    });
 }
 
 async function signup(parent, args, ctx, info) {
@@ -59,30 +59,37 @@ async function login(parent, args, ctx, info) {
 }
 
 /**
-async function changeOrder(parent, args, ctx, info) {
-  const { linkId } = args
-  const userId = getUserId(ctx)
-  const linkExists = await ctx.db.exists.Vote({
-    user: { id: userId },
-    link: { id: linkId },
-  })
-  if (linkExists) {
-    throw new Error(`Already voted for link: ${linkId}`)
-  }
+ * Because we assume an article won't contain hundred of paragrapheds, we allow the update of every paragraph
+ *
+ * @param {*} parent
+ * @param {*} param1
+ * @param {*} ctx
+ * @param {*} info
+ */
+async function changeParagraphOrder(parent, { paragraphes }, ctx, info) {
+  const items = await ctx.prisma.paragraphs({
+    where: {
+      id_in: paragraphes
+    }
+   });
 
-  return ctx.prisma.createVote(
-    {
+  const result = await Promise.all(items.map(async (item, index) => {
+    return await ctx.prisma.updateParagraph({
       data: {
-        user: { connect: { id: userId } },
-        link: { connect: { id: linkId } },
+        order: paragraphes.findIndex(k => k === item.id)
       },
-    },
-    info,
-  )
-}*/
+      where: {
+        id: item.id
+      }
+    });
+  }));
+
+  return result;
+}
 
 module.exports = {
   createArticle,
   signup,
-  login
+  login,
+  changeParagraphOrder
 }
