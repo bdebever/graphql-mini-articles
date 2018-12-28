@@ -8,6 +8,8 @@ _Backend_:
 - graphql-yoga: Fully-featured GraphQL Server with focus on easy setup, performance & great developer experience
 - Prisma: Open-source GraphQL API layer that turns the database into a GraphQL API
 
+The design is handled with the [Ant.design](https://ant.design) framework.
+
 More details:
 - [https://www.howtographql.com/react-apollo/0-introduction/](https://www.howtographql.com/react-apollo/0-introduction/)
 - [https://github.com/prisma/prisma-examples/tree/master/node/graphql](https://github.com/prisma/prisma-examples/tree/master/node/graphql)
@@ -16,7 +18,7 @@ More details:
 
 We have the following directories:
 - `src`: contains the client files of the React application
-- `server`: contains the GraphQL server as well as the Prisma configuration. This is [another repository](https://github.com/bdebever/graphql-mini-articles-server)
+- `server`: contains the GraphQL server as well as the Prisma configuration. This is [another repository](https://github.com/bdebever/graphql-mini-articles-server). The address of the server is defined in the `./src/index.js` file, line 12.
 - `public`: static files for the React application to work
 
 ## Available Scripts

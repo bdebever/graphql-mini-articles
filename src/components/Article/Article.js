@@ -54,7 +54,6 @@ export default class Article extends Component {
         this.setState({
             modal
         });
-        console.log("cosed");
     }
 
     removeTag = (e) => {
@@ -63,7 +62,6 @@ export default class Article extends Component {
     }
 
     render() {
-        console.log("state: " + this.state.modal.edit);
         return (
         <Query query={ARTICLE_QUERY} pollInterval={500} variables={{ id: this.props.match.params.articleId }}>
                 {({ loading, error, data }) => {

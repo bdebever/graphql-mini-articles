@@ -112,7 +112,6 @@ class EditForm extends Component {
                       articleId: article.id
                     } });
                     if (error) console.error(error);
-                    console.log(mutation);
                   }}
                   />
                 )}

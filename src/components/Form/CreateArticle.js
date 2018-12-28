@@ -56,8 +56,6 @@ export default class CreateArticle extends Component {
 
   _updateStoreAfterMutation = (store, value) => {
     const data = store.readQuery({ query: FEED_QUERY });
-    console.log("reading data");
-    console.log(data.feed);
     data.feed.unshift(value);
     store.writeQuery({ query: FEED_QUERY, data })
   }
