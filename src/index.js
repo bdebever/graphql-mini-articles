@@ -9,8 +9,10 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { BrowserRouter } from 'react-router-dom';
 
 const httpLink = createHttpLink({
-    uri: process.env.SERVER || 'http://localhost:4000'
+    uri: process.env.SERVER
 })
+
+console.log(process.env.SERVER);
 
 /**
  * Create the Apollo Client Instance
