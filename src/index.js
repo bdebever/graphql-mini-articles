@@ -9,7 +9,9 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { BrowserRouter } from 'react-router-dom';
 
 const httpLink = createHttpLink({
-    uri: process.env.SERVER_GRAPHQL || 'http://localhost:4000'
+    uri: window.location.hostname.indexOf('localhost') ?
+        'http://localhost:4000' :
+        'https://server-graphql-articles.herokuapp.com/'
 })
 
 console.log(process.env.SERVER_GRAPHQL);
