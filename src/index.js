@@ -9,7 +9,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { BrowserRouter } from 'react-router-dom';
 
 const httpLink = createHttpLink({
-    uri: 'https://server-graphql-articles.herokuapp.com/'
+    uri: process.env.SERVER || 'http://localhost:4000' 
 });
 
 /**
