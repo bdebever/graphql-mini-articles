@@ -33,6 +33,7 @@
   "dependencies": {
     "antd": "^3.11.3",
     "apollo-boost": "^0.1.22",
+    "concurrently": "^4.1.0",
     "graphql": "^14.0.2",
     "react": "^16.6.3",
     "react-apollo": "^2.3.3",
