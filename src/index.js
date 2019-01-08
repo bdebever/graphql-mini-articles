@@ -10,10 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const httpLink = createHttpLink({
     uri: 'https://server-graphql-articles.herokuapp.com/'
-})
-
-console.log(process.env.SERVER_GRAPHQL);
-console.log(process.env.NODE_ENV);
+});
 
 /**
  * Create the Apollo Client Instance
